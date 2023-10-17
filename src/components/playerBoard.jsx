@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
 
 import '../../public/styles/board.css';
 
@@ -10,11 +11,8 @@ export default function PlayerBoard() {
     Array.from({ length: 10 }, () => Array(10).fill(null))
   );
 
-  useEffect(() => {
-    // Place a battleship of length 4 on the board after the component mounts
-    const updatedBoard = placeShip(board, 1);
-    setBoard(updatedBoard);
-  }, []);
+    // Place a battleship of length X on the board after the component mounts
+    placeShip(board, 7)
 
   // The empty dependency array ensures this effect runs only once
   return (
@@ -46,21 +44,19 @@ function placeShip(board, shipLength) {
 
   // Check if the ship can be placed in the chosen position and orientation
   if (
-    (orientation === 0 && col + shipLength <= numCols) ||
-    (orientation === 1 && row + shipLength <= numRows)
+    (orientation === 0 && col + shipLength <= numCols) || (orientation === 1 && row + shipLength <= numRows)
   ) {
     // Place the ship on the board
     for (let i = 0; i < shipLength; i++) {
+      console.log(shipLength)
       if (orientation === 0) {
-        console.log('Hello');
         board[row][col + i] = 'B';
         // 'B' represents a battleship
       } else {
-        console.log('Goodbye');
         board[row + i][col] = 'A';
       }
     }
-    console.log(board);
+    console.log("BOARD" + board);
     return board;
   } else {
     // Try placing the ship again if it doesn't fit
