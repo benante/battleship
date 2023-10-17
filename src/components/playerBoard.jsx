@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
-import '../../public/styles/board.css'; 
+import '../../public/styles/board.css';
 
-export default function Board() {
+export default function PlayerBoard() {
   // Define the initial state of the game board
+
   const [board, setBoard] = useState(Array(10).fill(Array(10).fill(null)));
 
   return (
-    <div className="board">
+    <div className="board player-board">
       {board.map((row, rowIndex) => (
         <div key={rowIndex} className="row">
           {row.map((cell, colIndex) => (
