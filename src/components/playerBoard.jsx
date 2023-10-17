@@ -5,25 +5,23 @@ import { placeShip } from '../utils/placeShip.jsx';
 
 export default function PlayerBoard() {
   // Define the initial state of the game board
-
-  // const [board, setBoard] = useState(Array(10).fill(Array(10).fill(null)));
   const [board, setBoard] = useState(
     Array.from({ length: 10 }, () => Array(10).fill(null))
   );
+  const [shipsPlaced, setShipsPlaced] = useState(false); // State for tracking whether ships have been placed
 
   const handlePlaceShip = () => {
     // Place a battleship on the board when the button is clicked
-    placeShip(board, 7); // Adjust the ship length as needed
+    placeShip(board, 4, 3); // board, ship length, number of ships
     setBoard([...board]); // Trigger a state update
+    setShipsPlaced(true);
   };
 
-  // // Place a battleship of length X on the board after the component mounts
-  // placeShip(board, 7);
-
-  // The empty dependency array ensures this effect runs only once
   return (
     <div>
-      <button onClick={handlePlaceShip}>Place Battleship</button>
+      <button onClick={handlePlaceShip} disabled={shipsPlaced}>
+        Place Battleships
+      </button>
 
       <div className="board player-board">
         {board.map((row, rowIndex) => (
