@@ -5,7 +5,10 @@ import '../../public/styles/board.css';
 export default function PlayerBoard() {
   // Define the initial state of the game board
 
-  const [board, setBoard] = useState(Array(10).fill(Array(10).fill(null)));
+  // const [board, setBoard] = useState(Array(10).fill(Array(10).fill(null)));
+  const [board, setBoard] = useState(
+    Array.from({ length: 10 }, () => Array(10).fill(null))
+  );
 
   useEffect(() => {
     // Place a battleship of length 4 on the board after the component mounts
