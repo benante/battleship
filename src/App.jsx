@@ -1,10 +1,17 @@
 // import { useState } from 'react';
 import './App.css';
-import Board from './components/Board.jsx';
+import ComputerBoard from './components/computerBoard.jsx';
+import PlayerBoard from './components/playerBoard.jsx';
+
 // import Game from './components/Game.jsx';
 
 function App() {
-  return <Board />;
+  return (
+    <>
+      <ComputerBoard />
+      <PlayerBoard />
+    </>
+  );
 }
 
 export default App;
