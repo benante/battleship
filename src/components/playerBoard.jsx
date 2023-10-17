@@ -49,16 +49,19 @@ function placeShip(board, shipLength) {
     // Place the ship on the board
     for (let i = 0; i < shipLength; i++) {
       if (orientation === 0) {
+        console.log('Hello');
         board[row][col + i] = 'B';
         // 'B' represents a battleship
       } else {
-        board[row + i][col] = 'B';
+        console.log('Goodbye');
+        board[row + i][col] = 'A';
       }
     }
     console.log(board);
     return board;
   } else {
     // Try placing the ship again if it doesn't fit
+    console.log('Else clause running');
     return placeShip(board, shipLength);
   }
 }
