@@ -1,6 +1,7 @@
 import { useState } from 'react';
-
 import '../../public/styles/board.css';
+// import placeShip from './components/Ship.jsx';
+
 
 export default function ComputerBoard() {
   // Define the initial state of the game board
