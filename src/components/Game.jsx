@@ -3,16 +3,17 @@ import { placeShip } from '../utils/placeShip.jsx';
 import ComputerBoard from './ComputerBoard';
 import PlayerBoard from './PlayerBoard';
 import PlaceShipButton from './PlaceShipsButton';
+import { selectCells } from '../utils/computerSelection.js';
 
 import '../../public/styles/ships.css';
 import '../../public/styles/board.css';
 
 export default function Game() {
- // Define the initial state for computer and player boards
- const [computerBoard, setComputerBoard] = useState(
+  // Define the initial state for computer and player boards
+  const [computerBoard, setComputerBoard] = useState(
     Array.from({ length: 10 }, () => Array(10).fill(null))
   );
-
+  console.log(selectCells(computerBoard))
   const [playerBoard, setPlayerBoard] = useState(
     Array.from({ length: 10 }, () => Array(10).fill(null))
   );
