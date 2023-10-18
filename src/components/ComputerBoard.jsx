@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { setCellClass } from '../utils/setCellClass';
 import { winGame } from '../utils/winGame';
 
-export default function ComputerBoard({ board }) {
+export default function ComputerBoard({ board, onCellClick }) {
   const [boardState, setBoardState] = useState(board);
   const [hitComputerCellCount, setComputerHitCellCount] = useState(0);
 
@@ -11,17 +11,21 @@ export default function ComputerBoard({ board }) {
     const updatedBoardState = [...boardState];
     if (updatedBoardState[rowIndex][colIndex] === 'B') {
       // Clicked on a ship, update the state and class
-      updatedBoardState[rowIndex][colIndex] = 'hit';
+      // updatedBoardState[rowIndex][colIndex] = 'hit';
       setComputerHitCellCount(hitComputerCellCount + 1);
-      console.log(board);
+      console.log("hit");
       setCellClass(rowIndex, colIndex, 'hit-ship');
     } else {
       // Clicked on an empty cell, update the state and class
-      updatedBoardState[rowIndex][colIndex] = 'miss';
+      // updatedBoardState[rowIndex][colIndex] = 'miss';
+      console.log("miss")
       setCellClass(rowIndex, colIndex, 'miss-ship');
     }
     setBoardState(updatedBoardState);
+
+    onCellClick(rowIndex, colIndex)
   };
+
 
   winGame();
 
