@@ -3,13 +3,14 @@ import { placeShip } from '../utils/placeShip.jsx';
 import ComputerBoard from './ComputerBoard';
 import PlayerBoard from './PlayerBoard';
 import PlaceShipButton from './PlaceShipsButton';
+import ScoreBoard from './ScoreBoard';
 
 import '../../public/styles/ships.css';
 import '../../public/styles/board.css';
 
 export default function Game() {
- // Define the initial state for computer and player boards
- const [computerBoard, setComputerBoard] = useState(
+  // Define the initial state for computer and player boards
+  const [computerBoard, setComputerBoard] = useState(
     Array.from({ length: 10 }, () => Array(10).fill(null))
   );
 
@@ -18,6 +19,8 @@ export default function Game() {
   );
 
   const [shipsPlaced, setShipsPlaced] = useState(false);
+  // const [hitComputerCellCount, setComputerHitCellCount] = useState(0);
+  // const [hitPlayerCellCount, setPlayerHitCellCount] = useState(0);
 
   const handlePlaceShips = () => {
     // Place ships on the computer's board
@@ -32,6 +35,7 @@ export default function Game() {
 
   return (
     <div>
+      <ScoreBoard />
       <ComputerBoard board={computerBoard} />
       <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
       <PlayerBoard board={playerBoard} />

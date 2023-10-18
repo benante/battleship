@@ -4,12 +4,14 @@ import { useState } from 'react';
 
 export default function ComputerBoard({ board }) {
   const [boardState, setBoardState] = useState(board);
+  const [hitComputerCellCount, setComputerHitCellCount] = useState(0);
 
   const handleCellClick = (rowIndex, colIndex) => {
     const updatedBoardState = [...boardState];
     if (updatedBoardState[rowIndex][colIndex] === 'B') {
       // Clicked on a ship, update the state and class
       updatedBoardState[rowIndex][colIndex] = 'hit';
+      setComputerHitCellCount(hitComputerCellCount + 1);
       console.log(board);
       setCellClass(rowIndex, colIndex, 'hit-ship');
     } else {
@@ -29,6 +31,14 @@ export default function ComputerBoard({ board }) {
     }
   };
 
+  console.log('hitComputerCellCount:', hitComputerCellCount);
+  function winGame() {
+    if (hitComputerCellCount === 12) {
+      alert('You beat the computer!');
+    }
+  }
+
+  winGame();
   return (
     <div className="board computer-board">
       {boardState.map((row, rowIndex) => (
