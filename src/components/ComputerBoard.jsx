@@ -22,14 +22,7 @@ export default function ComputerBoard({ board }) {
     setBoardState(updatedBoardState);
   };
 
-  const setCellClass = (rowIndex, colIndex, className) => {
-    const cell = document.querySelector(
-      `.row:nth-child(${rowIndex + 1}) .cell:nth-child(${colIndex + 1}`
-    );
-    if (cell) {
-      cell.className = `cell ${className}`;
-    }
-  };
+
 
   console.log('hitComputerCellCount:', hitComputerCellCount);
   function winGame() {
@@ -46,9 +39,8 @@ export default function ComputerBoard({ board }) {
           {row.map((cell, colIndex) => (
             <div
               key={colIndex}
-              className={`cell ${cell === 'B' ? 'ship-cell' : ''} ${
-                cell === 'hit' ? 'hit-ship' : ''
-              }`}
+              className={`cell ${cell === 'B' ? 'ship-cell' : ''} ${cell === 'hit' ? 'hit-ship' : ''
+                }`}
               // className={`cell ${cell === 'B' ? 'ship-cell' : ''}`}
               onClick={() => handleCellClick(rowIndex, colIndex)}
             >
