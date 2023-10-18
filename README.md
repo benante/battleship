@@ -11,7 +11,7 @@ This app is deployed on Netlify and can be accessed here: <https://battleship-re
 Clone the project
 
 ```bash
-  git clone https://github.com/fac28/ai-art-gallery.git
+  git clone https://github.com/fac28/battleship
 ```
 
 Go to the project directory
