@@ -2,3 +2,11 @@
   background-color: green; /* Set the desired background color for ship cells */
   /* Add any other styling you want */
 }
+
+.hit-ship {
+  background-color: red;
+}
+
+.miss-ship {
+  background-color: yellow;
+}

@@ -27,7 +27,7 @@ function placeSingleShip(board, shipLength, numRows, numCols) {
           board[row][col + i] = 'B';
           // 'B' represents a battleship
         } else {
-          board[row + i][col] = 'A';
+          board[row + i][col] = 'B';
         }
       }
       placed = true;

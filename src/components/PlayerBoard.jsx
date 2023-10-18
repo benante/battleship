@@ -1,8 +1,7 @@
 import '../../public/styles/board.css';
 import '../../public/styles/ships.css';
 
-export default function PlayerBoard({board}) {
- 
+export default function PlayerBoard({ board }) {
   return (
     <div className="board player-board">
       {board.map((row, rowIndex) => (
@@ -10,9 +9,7 @@ export default function PlayerBoard({board}) {
           {row.map((cell, colIndex) => (
             <div
               key={colIndex}
-              className={`cell ${
-                cell === 'B' || cell === 'A' ? 'ship-cell' : ''
-              }`}
+              className={`cell ${cell === 'B' ? 'ship-cell' : ''}`}
             >
               {/* Display the contents of each cell here */}
             </div>
