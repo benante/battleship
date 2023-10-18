@@ -19,11 +19,11 @@ export default function Game() {
 
   const handlePlaceShips = () => {
     // Place ships on the computer's board
-    placeShip(computerBoard, 7); // Adjust the ship length as needed
+    placeShip(computerBoard, 4, 3); // Adjust the ship length as needed
     setComputerBoard([...computerBoard]); // Trigger a state update for the computer's board
 
     // Place ships on the player's board
-    placeShip(playerBoard, 7); // Adjust the ship length as needed
+    placeShip(playerBoard, 4, 3); // Adjust the ship length as needed
     setPlayerBoard([...playerBoard]); // Trigger a state update for the player's board
   };
 
