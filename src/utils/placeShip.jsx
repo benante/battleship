@@ -13,15 +13,19 @@ export function placeShip(board, shipLength, numOfShips) {
 // Function to place a single ship on the board
 function placeSingleShip(board, shipLength, numRows, numCols) {
   let placed = false;
+  let row, col, orientation;
+
   while (!placed) {
     // Randomly choose starting position
-    const row = Math.floor(Math.random() * numRows);
-    const col = Math.floor(Math.random() * numCols);
+    row = Math.floor(Math.random() * numRows);
+    col = Math.floor(Math.random() * numCols);
 
     // Randomly choose orientation (0 for horizontal, 1 for vertical)
-    const orientation = Math.floor(Math.random() * 2);
+    orientation = Math.floor(Math.random() * 2);
 
-    if (canPlaceShip(orientation, col, row, shipLength, numCols, numRows)) {
+    if (
+      canPlaceShip(orientation, col, row, shipLength, numCols, numRows, board)
+    ) {
       for (let i = 0; i < shipLength; i++) {
         if (orientation === 0) {
           board[row][col + i] = 'B';
@@ -36,9 +40,37 @@ function placeSingleShip(board, shipLength, numRows, numCols) {
 }
 
 // Function to check if a ship can be placed in the chosen position and orientation
-function canPlaceShip(orientation, col, row, shipLength, numCols, numRows) {
-  return (
-    (orientation === 0 && col + shipLength <= numCols) ||
-    (orientation === 1 && row + shipLength <= numRows)
-  );
+function canPlaceShip(
+  orientation,
+  col,
+  row,
+  shipLength,
+  numCols,
+  numRows,
+  board
+) {
+  if (
+    (orientation === 0 && col + shipLength > numCols) ||
+    (orientation === 1 && row + shipLength > numRows)
+  ) {
+    return false; // Ship would go out of bounds
+  }
+
+  if (orientation === 0) {
+    // Check for horizontal placement
+    for (let i = 0; i < shipLength; i++) {
+      if (board[row][col + i] === 'B') {
+        return false; // Ship would overlap with another ship
+      }
+    }
+  } else {
+    // Check for vertical placement
+    for (let i = 0; i < shipLength; i++) {
+      if (board[row + i][col] === 'B') {
+        return false; // Ship would overlap with another ship
+      }
+    }
+  }
+
+  return true;
 }
