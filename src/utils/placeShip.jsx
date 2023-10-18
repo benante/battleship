@@ -1,35 +1,44 @@
-// Function to place a ship on the board
-export function placeShip(board, shipLength) {
+// Function to place a specific number of ships on the board
+export function placeShip(board, shipLength, numOfShips) {
   const numRows = board.length;
   const numCols = board[0].length;
 
-  // Randomly choose starting position
-  const row = Math.floor(Math.random() * numRows);
-  const col = Math.floor(Math.random() * numCols);
+  for (let ship = 0; ship < numOfShips; ship++) {
+    placeSingleShip(board, shipLength, numRows, numCols);
+  }
 
-  // Randomly choose orientation (0 for horizontal, 1 for vertical)
-  const orientation = Math.floor(Math.random() * 2);
+  return board;
+}
 
-  // Check if the ship can be placed in the chosen position and orientation
-  if (
+// Function to place a single ship on the board
+function placeSingleShip(board, shipLength, numRows, numCols) {
+  let placed = false;
+  while (!placed) {
+    // Randomly choose starting position
+    const row = Math.floor(Math.random() * numRows);
+    const col = Math.floor(Math.random() * numCols);
+
+    // Randomly choose orientation (0 for horizontal, 1 for vertical)
+    const orientation = Math.floor(Math.random() * 2);
+
+    if (canPlaceShip(orientation, col, row, shipLength, numCols, numRows)) {
+      for (let i = 0; i < shipLength; i++) {
+        if (orientation === 0) {
+          board[row][col + i] = 'B';
+          // 'B' represents a battleship
+        } else {
+          board[row + i][col] = 'A';
+        }
+      }
+      placed = true;
+    }
+  }
+}
+
+// Function to check if a ship can be placed in the chosen position and orientation
+function canPlaceShip(orientation, col, row, shipLength, numCols, numRows) {
+  return (
     (orientation === 0 && col + shipLength <= numCols) ||
     (orientation === 1 && row + shipLength <= numRows)
-  ) {
-    // Place the ship on the board
-    for (let i = 0; i < shipLength; i++) {
-      console.log(shipLength);
-      if (orientation === 0) {
-        board[row][col + i] = 'B';
-        // 'B' represents a battleship
-      } else {
-        board[row + i][col] = 'A';
-      }
-    }
-    console.log('BOARD' + board);
-    return board;
-  } else {
-    // Try placing the ship again if it doesn't fit
-    console.log('Else clause running');
-    return placeShip(board, shipLength);
-  }
+  );
 }
