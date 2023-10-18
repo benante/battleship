@@ -1,3 +1,3 @@
-export default function PlaceShipButton({ onClick }) {
-  return <button onClick={onClick}>Place Battleship</button>;
+export default function PlaceShipButton({ onClick, shipsPlaced }) {
+  return <button onClick={onClick} disabled={shipsPlaced}>Place Battleship</button>;
 }

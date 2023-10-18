@@ -17,6 +17,8 @@ export default function Game() {
     Array.from({ length: 10 }, () => Array(10).fill(null))
   );
 
+  const [shipsPlaced, setShipsPlaced] = useState(false);
+
   const handlePlaceShips = () => {
     // Place ships on the computer's board
     placeShip(computerBoard, 4, 3); // Adjust the ship length as needed
@@ -25,12 +27,13 @@ export default function Game() {
     // Place ships on the player's board
     placeShip(playerBoard, 4, 3); // Adjust the ship length as needed
     setPlayerBoard([...playerBoard]); // Trigger a state update for the player's board
+    setShipsPlaced(true);
   };
 
   return (
     <div>
       <ComputerBoard board={computerBoard} />
-      <PlaceShipButton onClick={handlePlaceShips} />
+      <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
       <PlayerBoard board={playerBoard} />
     </div>
   );
