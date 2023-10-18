@@ -1,6 +1,7 @@
 import '../../public/styles/board.css';
 import { useState } from 'react';
-// import placeShip from './components/Ship.jsx';
+import { setCellClass } from '../utils/setCellClass';
+import { winGame } from '../utils/winGame';
 
 export default function ComputerBoard({ board }) {
   const [boardState, setBoardState] = useState(board);
@@ -22,16 +23,9 @@ export default function ComputerBoard({ board }) {
     setBoardState(updatedBoardState);
   };
 
-
-
-  console.log('hitComputerCellCount:', hitComputerCellCount);
-  function winGame() {
-    if (hitComputerCellCount === 12) {
-      alert('You beat the computer!');
-    }
-  }
-
   winGame();
+
+
   return (
     <div className="board computer-board">
       {boardState.map((row, rowIndex) => (
