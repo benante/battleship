@@ -25,7 +25,7 @@ export default function ComputerBoard({ board, onCellClick }) {
 
   return (
     <div className="computer-section">
-      <h1>Your Ships!</h1>
+      <h1>Computer</h1>
       <div className="board computer-board">
         {boardState.map((row, rowIndex) => (
           <div key={rowIndex} className="row">

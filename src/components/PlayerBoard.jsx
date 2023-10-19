@@ -12,12 +12,13 @@ export default function PlayerBoard({ board, selectedCell }) {
             {row.map((cell, colIndex) => (
               <div
                 key={colIndex}
-                className={`cell ${cell === 'B' ? 'ship-cell' : ''} ${selectedCell &&
-                    selectedCell.coordX === rowIndex &&
-                    selectedCell.coordY === colIndex
+                className={`cell ${cell === 'B' ? 'ship-cell' : ''} ${
+                  selectedCell &&
+                  selectedCell.coordX === rowIndex &&
+                  selectedCell.coordY === colIndex
                     ? 'selected-cell'
                     : ''
-                  }`}
+                }`}
               >
                 {/* Display the contents of each cell here */}
               </div>
