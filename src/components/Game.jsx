@@ -4,6 +4,8 @@ import ComputerBoard from './ComputerBoard';
 import PlayerBoard from './PlayerBoard';
 import PlaceShipButton from './PlaceShipsButton';
 import ScoreBoard from './ScoreBoard';
+import isEqual from 'lodash/isEqual';
+
 
 import '../../public/styles/ships.css';
 import '../../public/styles/board.css';
@@ -57,7 +59,7 @@ export default function Game() {
     // Update the board state based on which board is being clicked
     console.log("clickBoard")
     console.log(clickedBoard)
-    if (clickedBoard === playerBoard) {
+    if (isEqual(clickedBoard, computerBoard)) {
       setPlayerBoard([...clickedBoard]);
       setSelectedPlayerCell(selectedCell);
       console.log("PLAYERBOARD")
