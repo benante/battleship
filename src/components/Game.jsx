@@ -49,12 +49,30 @@ export default function Game() {
     // Here, you can update the computer's board based on the result of the click if needed.
   };
 
+  // return (
+  //   <div>
+  //     <ScoreBoard />
+  //     <ComputerBoard board={computerBoard} onCellClick={handleCellClick} />
+  //     <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
+  //     <PlayerBoard board={playerBoard} selectedCell={selectedPlayerCell} />
+  //   </div>
+  // );
+
   return (
-    <div>
-      <ScoreBoard />
-      <ComputerBoard board={computerBoard} onCellClick={handleCellClick} />
-      <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
-      <PlayerBoard board={playerBoard} selectedCell={selectedPlayerCell} />
-    </div>
+    <>
+      <div className="controls-container">
+        <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
+      </div>
+      <div className="main-container">
+        <ScoreBoard />
+        <ComputerBoard
+          board={computerBoard}
+          onCellClick={(rowIndex, colIndex) =>
+            handleCellClick(computerBoard, rowIndex, colIndex)
+          }
+        />
+        <PlayerBoard board={playerBoard} selectedCell={selectedPlayerCell} />
+      </div>
+    </>
   );
 }
