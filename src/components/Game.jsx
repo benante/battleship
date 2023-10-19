@@ -30,6 +30,7 @@ export default function Game() {
     setShipsPlaced(true);
   };
   const [selectedPlayerCell, setSelectedPlayerCell] = useState(null);
+
   const handleCellClick = (clickedBoard, rowIndex, colIndex) => {
     // Conditionally select a cell if it's playerBoard
     const selectedCell = clickedBoard === playerBoard ? selectCells(clickedBoard) : { coordX: rowIndex, coordY: colIndex };
@@ -59,6 +60,7 @@ export default function Game() {
     if (clickedBoard === playerBoard) {
       setPlayerBoard([...clickedBoard]);
       setSelectedPlayerCell(selectedCell);
+      console.log("PLAYERBOARD")
       // You can use state to store the selected cell
       // console.log(selectedPlayerCell)
     } else {
