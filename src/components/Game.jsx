@@ -68,12 +68,17 @@ export default function Game() {
 
   };
   return (
-    <div>
-      <ScoreBoard />
-      <ComputerBoard board={computerBoard} onCellClick={(rowIndex, colIndex) => handleCellClick(computerBoard, rowIndex, colIndex)} />
-      <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
-      <PlayerBoard board={playerBoard} selectedCell={selectedPlayerCell} />
-    </div>
+    <>
+      <div className="controls-container">
+          <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
+      </div>
+      <div className="main-container">
+        <ScoreBoard />
+        <ComputerBoard board={computerBoard} onCellClick={(rowIndex, colIndex) => handleCellClick(computerBoard, rowIndex, colIndex)} />
+        <PlayerBoard board={playerBoard} selectedCell={selectedPlayerCell} />
+      </div>
+  </>
+
   );
 }
 

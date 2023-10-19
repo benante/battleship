@@ -7,6 +7,8 @@ export default function PlayerBoard({ board, selectedCell }) {
 
   console.log(selectedCell)
   return (
+    <div className="player-section">
+      <h1>Your Ships!</h1>
     <div className="board player-board">
       {board.map((row, rowIndex) => (
         <div key={rowIndex} className="row">
@@ -20,6 +22,8 @@ export default function PlayerBoard({ board, selectedCell }) {
           ))}
         </div>
       ))}
+      </div>
+
     </div>
   );
 }
