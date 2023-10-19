@@ -13,12 +13,10 @@ export default function ComputerBoard({ board, onCellClick }) {
       // Clicked on a ship, update the state and class
       // updatedBoardState[rowIndex][colIndex] = 'hit';
       setComputerHitCellCount(hitComputerCellCount + 1);
-      console.log("hit");
       setCellClass(rowIndex, colIndex, 'hit-ship');
     } else {
       // Clicked on an empty cell, update the state and class
       // updatedBoardState[rowIndex][colIndex] = 'miss';
-      console.log("miss")
       setCellClass(rowIndex, colIndex, 'miss-ship');
     }
     setBoardState(updatedBoardState);

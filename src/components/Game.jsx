@@ -39,11 +39,11 @@ export default function Game() {
 
     // Now you can safely access the coordinates
     const { coordX, coordY } = selectedCell;
-    setTimeout(() => {
+    // setTimeout(() => {
 
-      console.log("Printing coords from Game:");
-      console.log(selectedCell)
-    }, 1000);
+    //   console.log("Printing coords from Game:");
+    //   console.log(selectedCell)
+    // }, 1000);
 
     // Check if the selected cell is a ship ('B')
     if (clickedBoard[coordX][coordY] === 'B') {
@@ -57,16 +57,12 @@ export default function Game() {
     }
 
     // Update the board state based on which board is being clicked
-    console.log("clickBoard")
-    console.log(clickedBoard)
     if (isEqual(clickedBoard, computerBoard)) {
       setPlayerBoard([...clickedBoard]);
       setSelectedPlayerCell(selectedCell);
-      console.log("PLAYERBOARD")
       // You can use state to store the selected cell
       // console.log(selectedPlayerCell)
     } else {
-      console.log("Computer hit")
       setComputerBoard([...clickedBoard]);
     }
 

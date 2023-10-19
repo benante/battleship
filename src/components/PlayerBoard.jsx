@@ -1,9 +1,10 @@
 import '../../public/styles/board.css';
 import '../../public/styles/ships.css';
-
+import { setCellClass } from '../utils/setCellClass';
 
 export default function PlayerBoard({ board, selectedCell }) {
-  console.log("selectedCell from PlayerBoard:")
+  // setCellClass(selectedCell.coordX, selectedCell.coordY, "hit-ship")
+
   console.log(selectedCell)
   return (
     <div className="board player-board">
@@ -22,6 +23,7 @@ export default function PlayerBoard({ board, selectedCell }) {
     </div>
   );
 }
+
 
 
 // export default function PlayerBoard({ board, rowIndex, colIndex }) {

@@ -5,7 +5,6 @@ export function updateBoard (updatedBoardState, rowIndex, colIndex, setComputerH
         // Clicked on a ship, update the state and class
         updatedBoardState[rowIndex][colIndex] = 'hit';
         setComputerHitCellCount(hitComputerCellCount + 1);
-        console.log(board);
         setCellClass(rowIndex, colIndex, 'hit-ship');
       } else {
         // Clicked on an empty cell, update the state and class
