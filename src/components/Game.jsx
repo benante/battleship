@@ -30,11 +30,15 @@ export default function Game() {
   };
 
   return (
-    <div>
-      <ScoreBoard />
-      <ComputerBoard board={computerBoard} />
-      <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
-      <PlayerBoard board={playerBoard} />
-    </div>
+    <>
+      <div className="controls-container">
+        <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
+      </div>
+      <div className="main-container">
+        <ScoreBoard />
+        <ComputerBoard board={computerBoard} />
+        <PlayerBoard board={playerBoard} />
+      </div>
+    </>
   );
 }
