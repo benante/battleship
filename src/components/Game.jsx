@@ -4,9 +4,12 @@ import ComputerBoard from './ComputerBoard';
 import PlayerBoard from './PlayerBoard';
 import PlaceShipButton from './PlaceShipsButton';
 import ScoreBoard from './ScoreBoard';
+import isEqual from 'lodash/isEqual';
+
 
 import '../../public/styles/ships.css';
 import '../../public/styles/board.css';
+import { selectCells } from '../utils/computerSelection';
 
 export default function Game() {
   const [computerBoard, setComputerBoard] = useState(
@@ -28,17 +31,78 @@ export default function Game() {
 
     setShipsPlaced(true);
   };
+  const [selectedPlayerCell, setSelectedPlayerCell] = useState(null);
 
+  const handleCellClick = (clickedBoard, rowIndex, colIndex) => {
+    // Conditionally select a cell if it's playerBoard
+    const selectedCell = clickedBoard === playerBoard ? selectCells(clickedBoard) : { coordX: rowIndex, coordY: colIndex };
+
+    // Now you can safely access the coordinates
+    const { coordX, coordY } = selectedCell;
+    // setTimeout(() => {
+
+    //   console.log("Printing coords from Game:");
+    //   console.log(selectedCell)
+    // }, 1000);
+
+    // Check if the selected cell is a ship ('B')
+    if (clickedBoard[coordX][coordY] === 'B') {
+      // Update the selected cell state to 'hit' for a hit
+      // and update the board state
+      clickedBoard[coordX][coordY] = 'hit';
+    } else {
+      // Update the selected cell state to 'miss' for a miss
+      // and update the board state
+      clickedBoard[coordX][coordY] = 'miss';
+    }
+
+    // Update the board state based on which board is being clicked
+    if (isEqual(clickedBoard, computerBoard)) {
+      setPlayerBoard([...clickedBoard]);
+      setSelectedPlayerCell(selectedCell);
+      // You can use state to store the selected cell
+      // console.log(selectedPlayerCell)
+    } else {
+      setComputerBoard([...clickedBoard]);
+    }
+
+  };
   return (
     <>
       <div className="controls-container">
-        <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
+          <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
       </div>
       <div className="main-container">
         <ScoreBoard />
-        <ComputerBoard board={computerBoard} />
-        <PlayerBoard board={playerBoard} />
+        <ComputerBoard board={computerBoard} onCellClick={(rowIndex, colIndex) => handleCellClick(computerBoard, rowIndex, colIndex)} />
+        <PlayerBoard board={playerBoard} selectedCell={selectedPlayerCell} />
       </div>
-    </>
+  </>
+
   );
 }
+
+
+// const handleCellClick = (clickedBoard, rowIndex, colIndex) => {
+//   const selectedCell = selectCells(clickedBoard); // Select a cell on the player board
+//   console.log(selectedCell);
+//   // Check if the selected player cell is a ship ('B')
+//   if (selectedCell === 'B') {
+//     // Update the selected player cell state to 'hit' for a hit
+//     // and update the player board state
+//     clickedBoard[selectedCell.coordX][selectedCell.coordY] = 'hit';
+//   } else {
+//     // Update the selected player cell state to 'miss' for a miss
+//     // and update the player board state
+//     clickedBoard[selectedCell.coordX][selectedCell.coordY] = 'miss';
+//   }
+
+//   // Update the board state based on which board is being clicked
+//   if (clickedBoard === playerBoard) {
+//     setPlayerBoard([...clickedBoard]);
+//   } else {
+//     setComputerBoard([...clickedBoard]);
+//   }
+// };
+
+
