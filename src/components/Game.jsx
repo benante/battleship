@@ -29,7 +29,7 @@ export default function Game() {
 
     setShipsPlaced(true);
   };
-
+  const [selectedPlayerCell, setSelectedPlayerCell] = useState(null);
   const handleCellClick = (clickedBoard, rowIndex, colIndex) => {
     // Conditionally select a cell if it's playerBoard
     const selectedCell = clickedBoard === playerBoard ? selectCells(clickedBoard) : { coordX: rowIndex, coordY: colIndex };
@@ -38,7 +38,8 @@ export default function Game() {
     const { coordX, coordY } = selectedCell;
     setTimeout(() => {
 
-      console.log(selectedCell);
+      console.log("Printing coords from Game:");
+      console.log(selectedCell)
     }, 1000);
 
     // Check if the selected cell is a ship ('B')
@@ -53,43 +54,50 @@ export default function Game() {
     }
 
     // Update the board state based on which board is being clicked
+    console.log("clickBoard")
+    console.log(clickedBoard)
     if (clickedBoard === playerBoard) {
       setPlayerBoard([...clickedBoard]);
+      setSelectedPlayerCell(selectedCell);
+      // You can use state to store the selected cell
+      // console.log(selectedPlayerCell)
     } else {
+      console.log("Computer hit")
       setComputerBoard([...clickedBoard]);
     }
+
   };
-
-
-  // const handleCellClick = (clickedBoard, rowIndex, colIndex) => {
-  //   const selectedCell = selectCells(clickedBoard); // Select a cell on the player board
-  //   console.log(selectedCell);
-  //   // Check if the selected player cell is a ship ('B')
-  //   if (selectedCell === 'B') {
-  //     // Update the selected player cell state to 'hit' for a hit
-  //     // and update the player board state
-  //     clickedBoard[selectedCell.coordX][selectedCell.coordY] = 'hit';
-  //   } else {
-  //     // Update the selected player cell state to 'miss' for a miss
-  //     // and update the player board state
-  //     clickedBoard[selectedCell.coordX][selectedCell.coordY] = 'miss';
-  //   }
-
-  //   // Update the board state based on which board is being clicked
-  //   if (clickedBoard === playerBoard) {
-  //     setPlayerBoard([...clickedBoard]);
-  //   } else {
-  //     setComputerBoard([...clickedBoard]);
-  //   }
-  // };
-
-
   return (
     <div>
       <ScoreBoard />
       <ComputerBoard board={computerBoard} onCellClick={(rowIndex, colIndex) => handleCellClick(computerBoard, rowIndex, colIndex)} />
       <PlaceShipButton onClick={handlePlaceShips} shipsPlaced={shipsPlaced} />
-      <PlayerBoard board={playerBoard} onCellClick={(rowIndex, colIndex) => handleCellClick(playerBoard, rowIndex, colIndex)} />
+      <PlayerBoard board={playerBoard} selectedCell={selectedPlayerCell} />
     </div>
   );
 }
+
+
+// const handleCellClick = (clickedBoard, rowIndex, colIndex) => {
+//   const selectedCell = selectCells(clickedBoard); // Select a cell on the player board
+//   console.log(selectedCell);
+//   // Check if the selected player cell is a ship ('B')
+//   if (selectedCell === 'B') {
+//     // Update the selected player cell state to 'hit' for a hit
+//     // and update the player board state
+//     clickedBoard[selectedCell.coordX][selectedCell.coordY] = 'hit';
+//   } else {
+//     // Update the selected player cell state to 'miss' for a miss
+//     // and update the player board state
+//     clickedBoard[selectedCell.coordX][selectedCell.coordY] = 'miss';
+//   }
+
+//   // Update the board state based on which board is being clicked
+//   if (clickedBoard === playerBoard) {
+//     setPlayerBoard([...clickedBoard]);
+//   } else {
+//     setComputerBoard([...clickedBoard]);
+//   }
+// };
+
+
