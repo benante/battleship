@@ -32,10 +32,9 @@ export default function ComputerBoard({ board, onCellClick }) {
             {row.map((cell, colIndex) => (
               <div
                 key={colIndex}
-                className={`cell ${cell === 'B' ? 'ship-cell' : ''} ${
-                  cell === 'hit' ? 'hit-ship' : ''
-                }`}
-                onClick={() => handleCellClick(rowIndex, colIndex)}
+                className={`cell ${cell === 'B' ? 'ship-cell' : ''} ${cell === 'hit' ? 'hit-ship' : ''
+                  }`}
+                onClick={() => handleCellClick()}
               >
                 {/* Display the contents of each cell here */}
               </div>

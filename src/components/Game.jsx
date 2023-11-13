@@ -8,6 +8,7 @@ import isEqual from 'lodash/isEqual';
 import '../../public/styles/ships.css';
 import '../../public/styles/board.css';
 import { selectCells } from '../utils/computerSelection';
+import { Connect } from 'vite';
 
 export default function Game() {
   const [computerBoard, setComputerBoard] = useState(
@@ -31,7 +32,9 @@ export default function Game() {
     setShipsPlaced(true);
   };
 
-  const handleCellClick = (clickedBoard, rowIndex, colIndex) => {
+  const handleCellClick = (clickedBoard) => {
+    console.log("click")
+    console.log(clickedBoard)
     if (isEqual(clickedBoard, computerBoard)) {
       // If it's the computer's board, select a cell from the player's board
       const selectedCell = selectCells(playerBoard);
