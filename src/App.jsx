@@ -1,12 +1,8 @@
 import './App.css';
 import Game from './components/Game';
 
-
-console.log('ciao');
 function App() {
-  return (
-    <Game />
-  );
+  return <Game />;
 }
 
 // Ship colours:
